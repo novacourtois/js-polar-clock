@@ -10,7 +10,7 @@ if(canvas.height > canvas.width)
     canvas.height = canvas.width;
 
 function clock(){
-   var now = new Date();
+    var now = new Date();
     ctx.save();
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.lineWidth = 10;
@@ -47,7 +47,11 @@ function clock(){
     var dayPer = 0;
     
     if (month == 2){
-        dayPer = day/29;
+        isLeap = new Date(year, 1, 29).getMonth() == 1;
+        if(isLeap)
+            dayPer = day/29;
+        else
+            dayPer = day/28;
     }
     else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
         dayPer = day/31;

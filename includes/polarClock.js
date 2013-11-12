@@ -31,7 +31,7 @@ function clock(){
     var hrpm = hr; if (hrpm > 12) { hrpm -= 12; }
     
     ctx.fillStyle = "fff";
-    ctx.font = "48px Georgia";
+    ctx.font = "42px Georgia";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     ctx.fillText(Math.floor(hrpm)+" : "+Math.floor(min)+" : "+Math.floor(sec), canvas.width/2, canvas.height/2 + 24);
@@ -56,7 +56,7 @@ function clock(){
         dayPer = day/30;
     }   
     
-    writeTime(ctx,canvas.width/3 + 0,monthPer,0);
+    writeTime(ctx,canvas.width/3 + 0,dayPer,0);
     writeTime(ctx,canvas.width/3 + 15,dayPer,1);
     writeTime(ctx,canvas.width/3 + 30,dowPer,2);
     writeTime(ctx,canvas.width/3 + 45,hrPer,3);

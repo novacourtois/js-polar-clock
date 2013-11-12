@@ -28,7 +28,9 @@ function clock(){
     var dow = now.getDay() + 1;
     var day = now.getDate();
     var month = now.getMonth() + 1;
-    var hrpm = hr; if (hrpm > 12) { hrpm -= 12; }
+    var hrpm = hr;
+    if (hrpm > 12)
+        hrpm -= 12;
     
     ctx.fillStyle = "fff";
     ctx.font = "42px Georgia";
@@ -36,7 +38,7 @@ function clock(){
     ctx.textBaseline = "top";
     ctx.fillText(Math.floor(hrpm)+" : "+Math.floor(min)+" : "+Math.floor(sec), canvas.width/2, canvas.height/2 + 24);
    
-    ctx.fillText(" JavaScript Polar Clock",canvas.width/2, canvas.height/2 - 24);
+    ctx.fillText("JavaScript Polar Clock",canvas.width/2, canvas.height/2 - 24);
     ctx.rotate(-Math.PI/2);
     
     var secPer = sec/60;
@@ -58,7 +60,7 @@ function clock(){
     }
     else {
         dayPer = day/30;
-    }   
+    }
     
     writeTime(ctx,canvas.width/3 + 0,dayPer,0);
     writeTime(ctx,canvas.width/3 + 15,dayPer,1);
@@ -83,7 +85,7 @@ function writeTime(ctx,radius,per, index){
     drawArc(ctx,-canvas.width/2,canvas.height/2,radius,per);
     ctx.stroke();
     ctx.restore();  
-} 
+}
 
 function drawArc(ctx,x,y,rad,per){
     ctx.arc(x,y,rad,0,per*(Math.PI*2),false);

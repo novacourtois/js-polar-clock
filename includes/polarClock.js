@@ -56,12 +56,12 @@ function clock(){
         dayPer = day/30;
     }   
     
-    writeTime(ctx,canvas.width/2.5 + 0,monthPer,0);
-    writeTime(ctx,canvas.width/2.5 + 15,dayPer,1);
-    writeTime(ctx,canvas.width/2.5 + 30,dowPer,2);
-    writeTime(ctx,canvas.width/2.5 + 45,hrPer,3);
-    writeTime(ctx,canvas.width/2.5 + 60,minPer,4);
-    writeTime(ctx,canvas.width/2.5 + 75,secPer,5);
+    writeTime(ctx,canvas.width/3 + 0,monthPer,0);
+    writeTime(ctx,canvas.width/3 + 15,dayPer,1);
+    writeTime(ctx,canvas.width/3 + 30,dowPer,2);
+    writeTime(ctx,canvas.width/3 + 45,hrPer,3);
+    writeTime(ctx,canvas.width/3 + 60,minPer,4);
+    writeTime(ctx,canvas.width/3 + 75,secPer,5);
      
     ctx.restore();
 }

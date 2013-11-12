@@ -1,17 +1,19 @@
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth -20;
+canvas.height = window.innerHeight -20;
+document.body.appendChild(canvas);
+
+if(canvas.width > canvas.height)
+        canvas.width = canvas.height;
+if(canvas.height > canvas.width)
+        canvas.height = canvas.width;
+
 function clock(){
-        
-    var now = new Date();
-    
-    var ctx = document.getElementById('clockCanvas').getContext('2d');
-            
+   var now = new Date();
     ctx.save();
-    ctx.clearRect(0,0,400,400);
-    ctx.translate(200,200);
-    
-    ctx.scale(2,2);
-    
-    ctx.lineWidth = 6;
-    
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.lineWidth = 10;
     ctx.lineCap = "butt";
     
     var milliSec = now.getMilliseconds();         
@@ -28,17 +30,18 @@ function clock(){
     var month = now.getMonth() + 1;
     var hrpm = hr; if (hrpm > 12) { hrpm -= 12; }
     
-    ctx.fillStyle = "#fff";
-    ctx.fillText("Hour:  " + Math.floor(hrpm),-95,95);
-    ctx.fillText("Minutes:  " + Math.floor(min),-40,95);
-    ctx.fillText("Seconds:  " +  Math.floor(sec),35,95);
-    ctx.fillText(" JavaScript Polar Clock", -55,-85);
+    ctx.fillStyle = "fff";
+    ctx.font = "48px Georgia";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    ctx.fillText(Math.floor(hrpm)+" : "+Math.floor(min)+" : "+Math.floor(sec), canvas.width/2, canvas.height/2 + 24);
    
+    ctx.fillText(" JavaScript Polar Clock",canvas.width/2, canvas.height/2 - 24);
     ctx.rotate(-Math.PI/2);
     
     var secPer = sec/60;
     var minPer = min/60;
-            var hrPer = hr/12;
+    var hrPer = hr/12;
     var dowPer = dow/7;
     var monthPer = month/12;
     var dayPer = 0;
@@ -53,12 +56,12 @@ function clock(){
         dayPer = day/30;
     }   
     
-    writeTime(ctx,20,monthPer,0);
-    writeTime(ctx,30,dayPer,1);
-    writeTime(ctx,40,dowPer,2);
-    writeTime(ctx,50,hrPer,3);
-    writeTime(ctx,60,minPer,4);
-    writeTime(ctx,70,secPer,5);
+    writeTime(ctx,canvas.width/2.5 + 0,monthPer,0);
+    writeTime(ctx,canvas.width/2.5 + 15,dayPer,1);
+    writeTime(ctx,canvas.width/2.5 + 30,dowPer,2);
+    writeTime(ctx,canvas.width/2.5 + 45,hrPer,3);
+    writeTime(ctx,canvas.width/2.5 + 60,minPer,4);
+    writeTime(ctx,canvas.width/2.5 + 75,secPer,5);
      
     ctx.restore();
 }
@@ -67,18 +70,18 @@ function writeTime(ctx,radius,per, index){
     ctx.save();
     ctx.strokeStyle = getShade(index); //calculateColor(per);
     ctx.beginPath();
-    drawArc(ctx,0,0,radius,per);
+    drawArc(ctx,-canvas.width/2,canvas.height/2,radius,per);
     ctx.stroke();
     ctx.restore();  
 }   
 
 function getShade(index){
-   if (index==0) { result ='rgba(156,255,0,1)'; } //
-    else if(index==1){ result ='rgba(156,255,0,.85)'; } //
-    else if(index==2){ result ='rgba(156,255,0,.7)'; }
-    else if(index==3){ result ='rgba(156,255,0,.55)'; }
-    else if(index==4){ result ='rgba(156,255,0,.40)'; } //
-    else if(index==5){ result ='rgba(156,255,0,.25)'; } //
+   if (index==0) { result ='rgba(0,255,0,1)'; } //
+    else if(index==1){ result ='rgba(253,105,0,1)'; } //
+    else if(index==2){ result ='rgba(35,232,183,1)'; }
+    else if(index==3){ result ='rgba(252,219,0,1)'; }
+    else if(index==4){ result ='rgba(224,27,178,1)'; } //
+    else if(index==5){ result ='rgba(255,255,255,1)'; } //
     return result;
 }
 
@@ -87,4 +90,4 @@ function drawArc(ctx,x,y,rad,per){
     return ctx;
 }
 
-setInterval(clock,75);
+setInterval(clock, 1); 

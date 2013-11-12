@@ -5,9 +5,9 @@ canvas.height = window.innerHeight -20;
 document.body.appendChild(canvas);
 
 if(canvas.width > canvas.height)
-        canvas.width = canvas.height;
+    canvas.width = canvas.height;
 if(canvas.height > canvas.width)
-        canvas.height = canvas.width;
+    canvas.height = canvas.width;
 
 function clock(){
    var now = new Date();
@@ -67,23 +67,19 @@ function clock(){
 }
     
 function writeTime(ctx,radius,per, index){
+    var arcColor = ['rgba(0,255,0,1)',
+                    'rgba(253,105,0,1)',
+                    'rgba(35,232,183,1)',
+                    'rgba(252,219,0,1)',
+                    'rgba(224,27,178,1)',
+                    'rgba(255,255,255,1)'];
     ctx.save();
-    ctx.strokeStyle = getShade(index); //calculateColor(per);
+    ctx.strokeStyle = arcColor[index]; 
     ctx.beginPath();
     drawArc(ctx,-canvas.width/2,canvas.height/2,radius,per);
     ctx.stroke();
     ctx.restore();  
-}   
-
-function getShade(index){
-   if (index==0) { result ='rgba(0,255,0,1)'; } //
-    else if(index==1){ result ='rgba(253,105,0,1)'; } //
-    else if(index==2){ result ='rgba(35,232,183,1)'; }
-    else if(index==3){ result ='rgba(252,219,0,1)'; }
-    else if(index==4){ result ='rgba(224,27,178,1)'; } //
-    else if(index==5){ result ='rgba(255,255,255,1)'; } //
-    return result;
-}
+} 
 
 function drawArc(ctx,x,y,rad,per){
     ctx.arc(x,y,rad,0,per*(Math.PI*2),false);

@@ -43,7 +43,14 @@ function clock(){
     ctx.font = "42px Georgia";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    ctx.fillText(Math.floor(hrpm)+" : "+Math.floor(min)+" : "+Math.floor(sec), canvas.width/2, canvas.height/2 + 24);
+    var minPad, secPad;
+
+    if(Math.floor(min) < 10) { minPad = "0"+Math.floor(min);  }
+    else { minPad = Math.floor(min); }
+    if(Math.floor(sec) < 10) { secPad = "0"+Math.floor(sec);  }
+    else { secPad = Math.floor(sec); }
+
+    ctx.fillText(Math.floor(hrpm)+" : "+minPad+" : "+secPad, canvas.width/2, canvas.height/2 + 24);
    
     ctx.fillText("JavaScript Polar Clock",canvas.width/2, canvas.height/2 - 24);
 

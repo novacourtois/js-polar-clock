@@ -21,7 +21,7 @@ function clock(){
     ctx.save();
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.lineWidth = 10;
-    ctx.lineCap = "butt";
+    ctx.lineCap = "round";
     
     var milliSec = now.getMilliseconds();         
     var sec = now.getSeconds();

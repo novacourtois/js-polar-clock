@@ -2,8 +2,8 @@ var polar_clock_canvas = document.createElement("canvas");
 var ctx = polar_clock_canvas.getContext("2d");
 polar_clock_canvas.width = window.innerWidth -20;
 polar_clock_canvas.height = window.innerHeight -20;
-// document.body.appendChild(polar_clock_canvas);
-$('.page3').append(polar_clock_canvas);
+document.body.appendChild(polar_clock_canvas);
+// $('.page3').append(polar_clock_canvas);
 
 if(polar_clock_canvas.width > polar_clock_canvas.height)
     polar_clock_canvas.width = polar_clock_canvas.height;

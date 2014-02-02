@@ -1,13 +1,15 @@
-var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth -20;
-canvas.height = window.innerHeight -20;
-document.body.appendChild(canvas);
+var polar_clock_canvas = document.createElement("canvas");
+var ctx = polar_clock_canvas.getContext("2d");
+polar_clock_canvas.width = window.innerWidth -20;
+polar_clock_canvas.height = window.innerHeight -20;
+// document.body.appendChild(polar_clock_canvas);
+$('.page3').append(polar_clock_canvas);
 
-if(canvas.width > canvas.height)
-    canvas.width = canvas.height;
-if(canvas.height > canvas.width)
-    canvas.height = canvas.width;
+if(polar_clock_canvas.width > polar_clock_canvas.height)
+    polar_clock_canvas.width = polar_clock_canvas.height;
+if(polar_clock_canvas.height > polar_clock_canvas.width)
+    polar_clock_canvas.height = polar_clock_canvas.width;
+
 
 var arcColor = ['rgba(0,255,0,1)',
                'rgba(253,105,0,1)',
@@ -19,7 +21,7 @@ var arcColor = ['rgba(0,255,0,1)',
 function clock(){
     var now = new Date();
     ctx.save();
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(0,0,polar_clock_canvas.width,polar_clock_canvas.height);
     ctx.lineWidth = 10;
     ctx.lineCap = "round";
     
@@ -50,9 +52,9 @@ function clock(){
     if(Math.floor(sec) < 10) { secPad = "0"+Math.floor(sec);  }
     else { secPad = Math.floor(sec); }
 
-    ctx.fillText(Math.floor(hrpm)+" : "+minPad+" : "+secPad, canvas.width/2, canvas.height/2 + 24);
+    ctx.fillText(Math.floor(hrpm)+" : "+minPad+" : "+secPad, polar_clock_canvas.width/2, polar_clock_canvas.height/2 + 24);
    
-    ctx.fillText("JavaScript Polar Clock",canvas.width/2, canvas.height/2 - 24);
+    ctx.fillText("JavaScript Polar Clock",polar_clock_canvas.width/2, polar_clock_canvas.height/2 - 24);
 
 
     ctx.font = "12px Georgia";
@@ -84,6 +86,7 @@ function clock(){
     var dowPer = dow/7;
     var monthPer = month/12;
     var dayPer = 0;
+    var year = new Date().getFullYear();
     
     if (month == 2){
         isLeap = new Date(year, 1, 29).getMonth() == 1;
@@ -99,12 +102,12 @@ function clock(){
         dayPer = day/30;
     }
     
-    writeTime(ctx,canvas.width/3 + 0,monthPer,0);
-    writeTime(ctx,canvas.width/3 + 15,dayPer,1);
-    writeTime(ctx,canvas.width/3 + 30,dowPer,2);
-    writeTime(ctx,canvas.width/3 + 45,hrPer,3);
-    writeTime(ctx,canvas.width/3 + 60,minPer,4);
-    writeTime(ctx,canvas.width/3 + 75,secPer,5);
+    writeTime(ctx,polar_clock_canvas.width/3 + 0,monthPer,0);
+    writeTime(ctx,polar_clock_canvas.width/3 + 15,dayPer,1);
+    writeTime(ctx,polar_clock_canvas.width/3 + 30,dowPer,2);
+    writeTime(ctx,polar_clock_canvas.width/3 + 45,hrPer,3);
+    writeTime(ctx,polar_clock_canvas.width/3 + 60,minPer,4);
+    writeTime(ctx,polar_clock_canvas.width/3 + 75,secPer,5);
      
     ctx.restore();
 }
@@ -113,7 +116,7 @@ function writeTime(ctx,radius,per, index){
     ctx.save();
     ctx.strokeStyle = arcColor[index]; 
     ctx.beginPath();
-    drawArc(ctx,-canvas.width/2,canvas.height/2,radius,per);
+    drawArc(ctx,-polar_clock_canvas.width/2,polar_clock_canvas.height/2,radius,per);
     ctx.stroke();
     ctx.restore();  
 }

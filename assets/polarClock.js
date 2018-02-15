@@ -61,6 +61,9 @@
     else if (Math.floor(hrpm) < 10) {
         hrpmPad = "0"+Math.floor(hrpm);
     }
+    else {
+      hrpmPad = Math.floor(hrpm);
+    }
 
     ctx.fillText(hrpmPad+":"+minPad+":"+secPad, polar_clock_canvas.width/2, polar_clock_canvas.height/2 - 24);
 
